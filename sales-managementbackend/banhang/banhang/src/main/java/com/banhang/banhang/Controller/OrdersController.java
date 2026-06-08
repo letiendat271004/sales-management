@@ -5,7 +5,7 @@ import com.banhang.banhang.Service.OrdersService;
 import org.springframework.web.bind.annotation.*;
 import com.banhang.banhang.dto.OrderResponse;
 import java.util.List;
-
+import com.banhang.banhang.dto.OrderRequest;
 @RestController
 @RequestMapping("/api/orders")
 @CrossOrigin("*")
@@ -42,5 +42,9 @@ public class OrdersController {
     @GetMapping("/dto")
     public List<OrderResponse> getAllDto() {
         return service.getAllDto();
+    }
+    @PostMapping("/checkout")
+    public Orders checkout(@RequestBody OrderRequest request) {
+        return service.createOrder(request);
     }
 }

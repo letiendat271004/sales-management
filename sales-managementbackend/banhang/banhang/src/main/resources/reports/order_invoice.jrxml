@@ -21,71 +21,148 @@
     <field name="quantity" class="java.lang.Integer"/>
     <field name="price" class="java.lang.Double"/>
     <field name="product" class="com.banhang.banhang.entity.Product"/>
+
     <title>
-        <band height="80">
+        <band height="120">
 
             <staticText>
-                <reportElement x="180" y="0" width="250" height="30"/>
+                <reportElement x="150" y="0" width="260" height="25"/>
+                <textElement textAlignment="Center">
+                    <font size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[CUA HANG LE TIEN DAT]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="150" y="30" width="260" height="25"/>
+                <textElement textAlignment="Center">
+                    <font size="15" isBold="true"/>
+                </textElement>
                 <text><![CDATA[HOA DON BAN HANG]]></text>
             </staticText>
 
             <textField>
-                <reportElement x="0" y="40" width="200" height="20"/>
+                <reportElement x="0" y="75" width="250" height="20"/>
                 <textFieldExpression><![CDATA["Ma don: " + $P{orderId}]]></textFieldExpression>
             </textField>
 
             <textField>
-                <reportElement x="220" y="40" width="200" height="20"/>
+                <reportElement x="300" y="75" width="250" height="20"/>
                 <textFieldExpression><![CDATA["Khach hang: " + $P{customerId}]]></textFieldExpression>
             </textField>
+
+            <staticText>
+                <reportElement x="0" y="100" width="555" height="1"/>
+                <box>
+                    <pen lineWidth="1.0"/>
+                </box>
+                <text><![CDATA[]]></text>
+            </staticText>
 
         </band>
     </title>
 
     <columnHeader>
-        <band height="20">
+        <band height="30">
 
             <staticText>
-                <reportElement x="0" y="0" width="120" height="20"/>
-                <text><![CDATA[So luong]]></text>
+                <reportElement x="0" y="5" width="40" height="20"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[STT]]></text>
             </staticText>
 
             <staticText>
-                <reportElement x="150" y="0" width="120" height="20"/>
-                <text><![CDATA[Don gia]]></text>
+                <reportElement x="40" y="5" width="220" height="20"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Ten san pham]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="260" y="5" width="70" height="20"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[So luong ]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="330" y="5" width="110" height="20"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[don gia ]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="440" y="5" width="115" height="20"/>
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Thanh tien]]></text>
             </staticText>
 
         </band>
     </columnHeader>
 
     <detail>
-        <band height="20">
+        <band height="25">
 
             <textField>
-                <reportElement x="0" y="0" width="120" height="20"/>
+                <reportElement x="0" y="0" width="40" height="20"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="40" y="0" width="220" height="20"/>
+                <textFieldExpression><![CDATA[$F{product}.getName()]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="260" y="0" width="70" height="20"/>
+                <textElement textAlignment="Center"/>
                 <textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
             </textField>
 
             <textField>
-                <reportElement x="150" y="0" width="120" height="20"/>
-                <textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+                <reportElement x="330" y="0" width="110" height="20"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###").format($F{price}) + " VNĐ"]]></textFieldExpression>
             </textField>
+
             <textField>
-                <reportElement x="0" y="0" width="200" height="20"/>
-                <textFieldExpression>
-                    <![CDATA[$F{product}.getName()]]>
-                </textFieldExpression>
+                <reportElement x="440" y="0" width="115" height="20"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,###").format($F{price} * $F{quantity}) + " VNĐ"]]></textFieldExpression>
             </textField>
+
         </band>
     </detail>
 
     <summary>
-        <band height="40">
+        <band height="100">
+
+            <line>
+                <reportElement x="0" y="10" width="555" height="1"/>
+            </line>
 
             <textField>
-                <reportElement x="300" y="10" width="200" height="20"/>
-                <textFieldExpression><![CDATA["Tong tien: " + $P{total}]]></textFieldExpression>
+                <reportElement x="300" y="25" width="250" height="25"/>
+                <textElement textAlignment="Right">
+                    <font size="13" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["TONG THANH TOAN: " + new java.text.DecimalFormat("#,###").format($P{total}) + " VNĐ"]]></textFieldExpression>
             </textField>
+
+            <staticText>
+                <reportElement x="380" y="65" width="150" height="20"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Nguoi lap hoa don]]></text>
+            </staticText>
 
         </band>
     </summary>

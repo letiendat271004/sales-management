@@ -1,0 +1,131 @@
+<div class="container mt-4">
+
+  <h2>🛒 Bán hàng</h2>
+
+  <h4>Danh sách sản phẩm</h4>
+
+  <table class="table table-striped table-bordered">
+
+    <thead class="table-primary">
+      <tr>
+        <th>ID</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá</th>
+        <th>Tồn kho</th>
+        <th>Danh mục</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for(product of products(); track product.id){
+        <tr>
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td class="text-success fw-bold">
+            {{ product.price | number }} VNĐ
+          </td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ product.categoryName }}</td>
+          <td>
+            <button
+              class="btn btn-success btn-sm"
+              (click)="addToCart(product)">
+              Thêm vào giỏ
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+
+  </table>
+
+  <hr>
+
+  <h3>🛒 Giỏ hàng</h3>
+
+  <div class="mb-3">
+
+    <label class="fw-bold">
+      Khách hàng ID:
+    </label>
+
+    <input
+      class="form-control w-auto d-inline-block mx-2"
+      type="number"
+      [(ngModel)]="customerId">
+
+    <button
+      class="btn btn-success"
+      (click)="checkout()">
+      Thanh toán & Xuất hóa đơn
+    </button>
+
+  </div>
+
+  <table class="table table-striped table-bordered">
+
+    <thead class="table-dark">
+      <tr>
+        <th>Sản phẩm</th>
+        <th>Giá</th>
+        <th>Số lượng</th>
+        <th>Thành tiền</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for(item of cartItems(); track item.productId){
+        <tr>
+          <td>{{ item.productName }}</td>
+
+          <td>
+            {{ item.price | number }} VNĐ
+          </td>
+
+          <td>
+            <button
+              class="btn btn-secondary btn-sm"
+              (click)="decrease(item)">
+              -
+            </button>
+
+            <span class="mx-2">
+              {{ item.quantity }}
+            </span>
+
+            <button
+              class="btn btn-secondary btn-sm"
+              (click)="increase(item)">
+              +
+            </button>
+          </td>
+
+          <td class="text-success fw-bold">
+            {{ item.price * item.quantity | number }} VNĐ
+          </td>
+
+          <td>
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="removeItem(item.productId)">
+              Xóa
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+
+  </table>
+
+  <div class="alert alert-success">
+
+    <h4 class="mb-0">
+      💰 Tổng tiền:
+      {{ getTotal() | number }} VNĐ
+    </h4>
+
+  </div>
+
+</div>
