@@ -1,0 +1,23 @@
+.hero-banner {
+  background: linear-gradient(135deg, #198754, #20c997);
+  color: white;
+  padding: 30px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.hero-banner h1 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.hero-banner p {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}

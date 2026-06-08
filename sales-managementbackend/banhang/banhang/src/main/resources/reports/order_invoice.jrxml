@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jasperReport
+        xmlns="http://jasperreports.sourceforge.net/jasperreports"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+        http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+        name="order_invoice"
+        pageWidth="595"
+        pageHeight="842"
+        columnWidth="555"
+        leftMargin="20"
+        rightMargin="20"
+        topMargin="20"
+        bottomMargin="20">
+
+    <parameter name="orderId" class="java.lang.Integer"/>
+    <parameter name="customerId" class="java.lang.Integer"/>
+    <parameter name="total" class="java.lang.Double"/>
+
+    <field name="quantity" class="java.lang.Integer"/>
+    <field name="price" class="java.lang.Double"/>
+    <field name="product" class="com.banhang.banhang.entity.Product"/>
+    <title>
+        <band height="80">
+
+            <staticText>
+                <reportElement x="180" y="0" width="250" height="30"/>
+                <text><![CDATA[HOA DON BAN HANG]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="0" y="40" width="200" height="20"/>
+                <textFieldExpression><![CDATA["Ma don: " + $P{orderId}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="220" y="40" width="200" height="20"/>
+                <textFieldExpression><![CDATA["Khach hang: " + $P{customerId}]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="20">
+
+            <staticText>
+                <reportElement x="0" y="0" width="120" height="20"/>
+                <text><![CDATA[So luong]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="150" y="0" width="120" height="20"/>
+                <text><![CDATA[Don gia]]></text>
+            </staticText>
+
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="20">
+
+            <textField>
+                <reportElement x="0" y="0" width="120" height="20"/>
+                <textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="150" y="0" width="120" height="20"/>
+                <textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="0" width="200" height="20"/>
+                <textFieldExpression>
+                    <![CDATA[$F{product}.getName()]]>
+                </textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <summary>
+        <band height="40">
+
+            <textField>
+                <reportElement x="300" y="10" width="200" height="20"/>
+                <textFieldExpression><![CDATA["Tong tien: " + $P{total}]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </summary>
+
+</jasperReport>
