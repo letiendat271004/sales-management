@@ -31,4 +31,6 @@ public class Product {
     @JoinColumn(name = "category_id")
     @JsonBackReference
     private Category category;
+
+    private String image;
 }

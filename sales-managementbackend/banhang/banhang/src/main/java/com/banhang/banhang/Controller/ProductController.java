@@ -8,6 +8,11 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 import com.banhang.banhang.dto.ProductResponse;
 import org.springframework.http.MediaType;
+import org.springframework.web.multipart.MultipartFile;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 @RestController
 @RequestMapping(
         value = "/api/products",
@@ -23,8 +28,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getAll() {
-        return service.getAll();
+    public List<ProductResponse> getAll() {
+        return service.getAllDto();
     }
 
     @GetMapping("/{id}")
@@ -71,5 +76,22 @@ public class ProductController {
     @GetMapping(value = "/dto", produces = "application/json")
     public List<ProductResponse> getAllDto() {
         return service.getAllDto();
+    }
+    @PostMapping("/upload")
+    public String uploadImage(@RequestParam("file") MultipartFile file) throws Exception {
+
+        String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+
+        Path uploadPath = Paths.get("uploads");
+
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+
+        Path filePath = uploadPath.resolve(fileName);
+
+        Files.copy(file.getInputStream(), filePath);
+
+        return "http://localhost:2644/uploads/" + fileName;
     }
 }

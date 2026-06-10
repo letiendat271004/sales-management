@@ -1,34 +1,92 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+  <div class="container">
 
-    <a class="navbar-brand" href="#">
-      🛒 Technology Store Management
+    <a class="navbar-brand brand d-flex align-items-center" routerLink="/">
+      <div class="brand-icon">🛒</div>
+
+      <div>
+        <div class="brand-title">
+          Store
+        </div>
+
+        <small class="brand-subtitle">
+          Quản lý bán hàng
+        </small>
+      </div>
     </a>
 
-    <div class="navbar-nav">
+    <button
+      class="navbar-toggler custom-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav">
 
-      <a
-        class="nav-link"
-        routerLink="/">
-        📦 Sản phẩm
-      </a>
+      <span class="navbar-toggler-icon"></span>
 
-      <a
-        class="nav-link"
-        routerLink="/categories">
-        📂 Danh mục
-      </a>
-<a class="nav-link" routerLink="/sale">
-  🛒 Bán hàng
-</a>
-<a class="nav-link" routerLink="/orders">
-  🧾 Đơn hàng
-</a>
+    </button>
+
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="navbarNav">
+
+      <div class="navbar-nav nav-menu">
+
+        <a
+          class="nav-link"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+
+          📦 Sản phẩm
+
+        </a>
+
+        <a
+          class="nav-link"
+          routerLink="/categories"
+          routerLinkActive="active">
+
+          📂 Danh mục
+
+        </a>
+
+        <a
+          class="nav-link"
+          routerLink="/sale"
+          routerLinkActive="active">
+
+          🛍️ Bán hàng
+
+        </a>
+
+        <a
+          class="nav-link"
+          routerLink="/orders"
+          routerLinkActive="active">
+
+          🧾 Đơn hàng
+
+        </a>
+
+      </div>
+
+      @if (isLoggedIn()) {
+
+        <button
+          class="btn btn-danger ms-3"
+          (click)="logout()">
+
+          🚪 Đăng xuất
+
+        </button>
+
+      }
+
     </div>
 
   </div>
 </nav>
 
-<div class="container mt-4">
+<main class="container container-main animate-fade-in">
   <router-outlet></router-outlet>
-</div>
+</main>

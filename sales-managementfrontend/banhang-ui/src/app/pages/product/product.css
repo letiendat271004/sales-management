@@ -1,61 +1,239 @@
-.container {
-  width: 95%;
-  margin: 20px auto;
-  font-family: Arial, sans-serif;
+.container-fluid {
+  background: #f4f7fb;
 }
 
-.hero-banner {
-  background: linear-gradient(135deg, #0d6efd, #6610f2);
-  color: white;
-  padding: 30px;
-  border-radius: 14px;
-  margin-bottom: 25px;
-  text-align: center;
+.page-title {
+  font-size: 28px;
+  letter-spacing: -0.5px;
 }
 
-.hero-banner h1 {
-  margin: 0;
-  font-weight: 700;
-}
-
-.hero-banner p {
-  margin-top: 10px;
-  margin-bottom: 0;
-  font-size: 18px;
-}
-
-input,
-select {
-  border-radius: 6px !important;
-}
-
-.table td,
-.table th {
-  vertical-align: middle;
-}
-
-.table tbody tr:hover {
-  background-color: #f0f8ff;
+.border-bottom-dash {
+  border-bottom: 1px dashed #dbe3ef;
 }
 
 .card {
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.card-stat {
+  min-height: 150px;
+  border-radius: 24px;
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.stat-label {
+  font-size: 12px;
+  letter-spacing: 0.8px;
+}
+
+.stat-value {
+  font-size: 28px;
+}
+
+.stat-icon-wrap {
+  width: 62px;
+  height: 62px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.card-list-modern,
+.control-card,
+.sticky-form {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+}
+
+.bg-primary-soft {
+  background: #e8f1ff;
+}
+
+.bg-success-soft {
+  background: #e8f9ef;
+}
+
+.btn-pdf {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 11px 18px;
+  font-weight: 700;
+}
+
+.btn-pdf:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(239, 68, 68, 0.25);
+}
+
+.search-box .form-control {
+  border-radius: 14px 0 0 14px;
+  border: 1px solid #e2e8f0;
+  padding: 11px 14px;
+}
+
+.btn-search-submit {
+  background: #2563eb;
+  color: white;
+  border-radius: 0 14px 14px 0;
+  font-weight: 700;
+}
+
+.btn-search-submit:hover {
+  background: #1d4ed8;
+  color: white;
+}
+
+.form-label-custom {
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 7px;
+}
+
+.form-control-custom {
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  padding: 12px 14px;
+}
+
+.form-control-custom:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.btn-primary-custom {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 13px;
+}
+
+.btn-warning-custom {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 13px;
+}
+
+.table-modern thead th {
+  background: #f8fafc;
+  color: #475569;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table-modern tbody td {
+  padding: 15px 16px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.table-modern tbody tr {
+  transition: 0.2s;
+}
+
+.table-modern tbody tr:hover {
+  background: #f8fafc;
+}
+
+.text-success-dark {
+  color: #15803d;
+}
+
+.badge-stock {
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.in-stock {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.low-stock {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.btn-action-edit,
+.btn-action-delete {
+  width: 38px;
+  height: 38px;
   border-radius: 12px;
+  border: none;
 }
 
-.card-body h2,
-.card-body h1 {
-  margin-bottom: 0;
+.btn-action-edit {
+  background: #fef3c7;
 }
 
-.text-success {
-  font-weight: bold;
+.btn-action-delete {
+  background: #fee2e2;
 }
 
-.btn {
-  margin-right: 5px;
+.btn-action-edit:hover,
+.btn-action-delete:hover {
+  transform: translateY(-2px);
 }
 
-h2 {
-  color: #0d6efd;
-  font-weight: bold;
+.btn-pager,
+.btn-pager-primary {
+  border-radius: 12px;
+  padding: 7px 14px;
+  font-weight: 700;
+}
+
+.btn-pager {
+  background: white;
+  border: 1px solid #cbd5e1;
+}
+
+.btn-pager-primary {
+  background: #2563eb;
+  color: white;
+}
+
+.sticky-form {
+  position: sticky;
+  top: 105px;
+}
+
+.mini-list .list-group-item {
+  border-color: #eef2f7;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 22px;
+  }
+
+  .sticky-form {
+    position: static;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
 }

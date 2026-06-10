@@ -36,7 +36,7 @@ public class ProductService {
         old.setName(product.getName());
         old.setPrice(product.getPrice());
         old.setQuantity(product.getQuantity());
-
+        old.setImage(product.getImage());
         return repository.save(old);
     }
 
@@ -71,7 +71,8 @@ public class ProductService {
                         product.getQuantity(),
                         product.getCategory() != null
                                 ? product.getCategory().getName()
-                                : null
+                                : null,
+                        product.getImage()
                 ))
                 .toList();
     }
@@ -90,7 +91,8 @@ public class ProductService {
                         product.getQuantity(),
                         product.getCategory() != null
                                 ? product.getCategory().getName()
-                                : null
+                                : null,
+                        product.getImage()
                 ));
     }
 }

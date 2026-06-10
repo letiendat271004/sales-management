@@ -1,131 +1,240 @@
-<div class="container mt-4">
-
-  <h2>🛒 Bán hàng</h2>
-
-  <h4>Danh sách sản phẩm</h4>
-
-  <table class="table table-striped table-bordered">
-
-    <thead class="table-primary">
-      <tr>
-        <th>ID</th>
-        <th>Tên sản phẩm</th>
-        <th>Giá</th>
-        <th>Tồn kho</th>
-        <th>Danh mục</th>
-        <th>Thao tác</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      @for(product of products(); track product.id){
-        <tr>
-          <td>{{ product.id }}</td>
-          <td>{{ product.name }}</td>
-          <td class="text-success fw-bold">
-            {{ product.price | number }} VNĐ
-          </td>
-          <td>{{ product.quantity }}</td>
-          <td>{{ product.categoryName }}</td>
-          <td>
-            <button
-              class="btn btn-success btn-sm"
-              (click)="addToCart(product)">
-              Thêm vào giỏ
-            </button>
-          </td>
-        </tr>
-      }
-    </tbody>
-
-  </table>
-
-  <hr>
-
-  <h3>🛒 Giỏ hàng</h3>
-
-  <div class="mb-3">
-
-    <label class="fw-bold">
-      Khách hàng ID:
-    </label>
-
-    <input
-      class="form-control w-auto d-inline-block mx-2"
-      type="number"
-      [(ngModel)]="customerId">
-
-    <button
-      class="btn btn-success"
-      (click)="checkout()">
-      Thanh toán & Xuất hóa đơn
-    </button>
-
+<div class="container-fluid px-4 py-3">
+  
+  <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom-dash">
+    <div>
+      <h2 class="page-title fw-bold m-0 text-dark">🛍️ Thu Ngân & Bán Hàng</h2>
+      <p class="text-muted small m-0">Tạo đơn hàng nhanh, quản lý giỏ hàng và xuất hóa đơn trực tiếp</p>
+    </div>
   </div>
 
-  <table class="table table-striped table-bordered">
+  <div class="row g-4">
+    
+    <div class="col-12 col-xl-7">
+      <div class="card border-0 shadow-sm main-panel-card">
+        <div class="card-header bg-transparent p-3 border-bottom d-flex justify-content-between align-items-center">
+          <h5 class="fw-bold m-0 text-dark d-flex align-items-center gap-2">
+            <span>📦</span> Danh mục sản phẩm mở bán
+          </h5>
+          <span class="badge bg-primary-soft text-primary rounded-pill fw-bold">
+            {{ products().length }} Sản phẩm sẵn sàng
+          </span>
+        </div>
+        
+        <div class="card-body p-0">
+          <div class="table-responsive" style="max-height: 650px; overflow-y: auto;">
+            <table class="table table-modern align-middle mb-0">
+              <thead class="sticky-top bg-light">
+                <tr>
+                  <th style="width: 70px;">ID</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Giá bán</th>
+                  <th class="text-center">Tồn kho</th>
+                  <th>Ngành hàng</th>
+                  <th class="text-center" style="width: 130px;">Chọn mua</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if (products().length === 0) {
+                  <tr>
+                    <td colspan="6" class="text-center py-5 text-muted">
+                      📭 Không có sản phẩm nào có sẵn để bán!
+                    </td>
+                  </tr>
+                }
+                @for(product of products(); track product.id) {
+                  <tr>
+                    <td><span class="text-muted font-monospace">#{{ product.id }}</span></td>
+                    <td><strong class="text-dark">{{ product.name }}</strong></td>
+                    <td>
+                      <span class="text-success-dark fw-bold">{{ product.price | number }} <small>đ</small></span>
+                    </td>
+                    <td class="text-center">
+                      <span class="badge-stock" [ngClass]="product.quantity > 5 ? 'in-stock' : 'low-stock'">
+                        {{ product.quantity }} sp
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge bg-light text-secondary border px-2 py-1">{{ product.categoryName }}</span>
+                    </td>
+                    <td class="text-center">
 
-    <thead class="table-dark">
-      <tr>
-        <th>Sản phẩm</th>
-        <th>Giá</th>
-        <th>Số lượng</th>
-        <th>Thành tiền</th>
-        <th>Thao tác</th>
-      </tr>
-    </thead>
+  <button
+    class="btn btn-sm btn-outline-primary mb-1"
+    (click)="viewDetail(product)">
+    👁️ Chi tiết
+  </button>
 
-    <tbody>
-      @for(item of cartItems(); track item.productId){
-        <tr>
-          <td>{{ item.productName }}</td>
+  <br>
 
-          <td>
-            {{ item.price | number }} VNĐ
-          </td>
+  <button
+    class="btn btn-sm btn-add-to-cart"
+    [disabled]="product.quantity <= 0"
+    (click)="addToCart(product)">
+    ➕ Thêm
+  </button>
 
-          <td>
-            <button
-              class="btn btn-secondary btn-sm"
-              (click)="decrease(item)">
-              -
-            </button>
+</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            <span class="mx-2">
-              {{ item.quantity }}
-            </span>
+    <div class="col-12 col-xl-5">
+      <div class="card border-0 shadow-sm sticky-cart-panel">
+        
+        <div class="card-header bg-dark text-white p-3 d-flex justify-content-between align-items-center rounded-top-12">
+          <h5 class="fw-bold m-0 d-flex align-items-center gap-2">
+            <span>🛒</span> Giỏ hàng hiện tại
+          </h5>
+          <span class="badge bg-danger rounded-pill fw-bold">{{ cartItems().length }} món</span>
+        </div>
 
-            <button
-              class="btn btn-secondary btn-sm"
-              (click)="increase(item)">
-              +
-            </button>
-          </td>
+        <div class="card-body p-0 flex-grow-1" style="max-height: 380px; overflow-y: auto;">
+          <table class="table table-cart align-middle mb-0">
+            <tbody>
+              @if (cartItems().length === 0) {
+                <tr>
+                  <td class="text-center py-5 text-muted">
+                    <div class="fs-2 mb-2">🛒</div>
+                    Giỏ hàng đang trống. Vui lòng chọn sản phẩm!
+                  </td>
+                </tr>
+              }
+              @for(item of cartItems(); track item.productId) {
+                <tr>
+                  <td class="ps-3">
+                    <div class="fw-bold text-dark text-truncate" style="max-width: 180px;">{{ item.productName }}</div>
+                    <small class="text-muted">{{ item.price | number }} đ</small>
+                  </td>
+                  <td class="text-center" style="width: 120px;">
+                    <div class="d-flex align-items-center justify-content-center gap-1">
+                      <button class="btn btn-qty-control" (click)="decrease(item)">-</button>
+                      <span class="fw-bold mx-1 text-dark" style="min-width: 20px;">{{ item.quantity }}</span>
+                      <button class="btn btn-qty-control" (click)="increase(item)">+</button>
+                    </div>
+                  </td>
+                  <td class="text-end fw-bold text-primary">
+                    {{ item.price * item.quantity | number }}đ
+                  </td>
+                  <td class="text-center pe-3" style="width: 40px;">
+                    <button class="btn p-0 text-danger border-0 bg-transparent btn-remove-item" 
+                            (click)="removeItem(item.productId)" title="Xóa món">
+                      ❌
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
 
-          <td class="text-success fw-bold">
-            {{ item.price * item.quantity | number }} VNĐ
-          </td>
+        <div class="card-footer bg-light p-3 border-top">
+          <div class="row g-2 align-items-center mb-3">
+            <div class="col-4">
+              <label class="form-label-custom m-0">Mã khách hàng:</label>
+            </div>
+            <div class="col-8">
+              <div class="input-group">
+                <span class="input-group-text bg-white border-end-0">👤</span>
+                <input class="form-control form-control-custom border-start-0 ps-0" 
+                       type="number" 
+                       placeholder="Nhập ID (Ví dụ: 1)" 
+                       [(ngModel)]="customerId">
+              </div>
+            </div>
+          </div>
 
-          <td>
-            <button
-              class="btn btn-danger btn-sm"
-              (click)="removeItem(item.productId)">
-              Xóa
-            </button>
-          </td>
-        </tr>
-      }
-    </tbody>
+          <div class="p-3 rounded-12 bg-white border mb-3 d-flex justify-content-between align-items-center shadow-inner">
+            <span class="fw-bold text-secondary">💰 TỔNG CẦN THANH TOÁN:</span>
+            <h3 class="fw-black text-success m-0 font-monospace">{{ getTotal() | number }} <small class="fs-6">VNĐ</small></h3>
+          </div>
 
-  </table>
+          <button class="btn btn-checkout-mega w-100 fw-bold py-3 d-flex align-items-center justify-content-center gap-2"
+                  [disabled]="cartItems().length === 0"
+                  (click)="checkout()">
+            💳 THANH TOÁN & IN HÓA ĐƠN
+          </button>
+        </div>
 
-  <div class="alert alert-success">
+      </div>
+    </div>
 
-    <h4 class="mb-0">
-      💰 Tổng tiền:
-      {{ getTotal() | number }} VNĐ
-    </h4>
+  </div>
+</div>
+@if (selectedProduct) {
+  <div class="modal-backdrop-custom">
+
+   <div class="product-detail-modal">
+
+  <div class="row g-0">
+
+    <div class="col-md-6">
+      <img
+        [src]="selectedProduct.image || 'https://via.placeholder.com/600x400'"
+        class="detail-img">
+    </div>
+
+    <div class="col-md-6 p-4">
+
+      <div class="d-flex justify-content-between">
+        <h3 class="fw-bold">
+          {{ selectedProduct.name }}
+        </h3>
+
+        <button
+          class="btn-close"
+          (click)="closeDetail()">
+        </button>
+      </div>
+
+      <div class="mb-3">
+        <span class="badge bg-primary">
+          {{ selectedProduct.categoryName }}
+        </span>
+      </div>
+
+      <h2 class="text-danger fw-bold mb-4">
+        {{ selectedProduct.price | number }} ₫
+      </h2>
+
+      <div class="mb-4">
+        <strong>Tồn kho:</strong>
+
+        <span
+          class="badge ms-2"
+          [ngClass]="selectedProduct.quantity > 0 ? 'bg-success' : 'bg-danger'">
+
+          {{ selectedProduct.quantity }}
+        </span>
+      </div>
+
+      <hr>
+
+      <ul class="list-unstyled">
+        <li>✅ Hàng chính hãng</li>
+        <li>🚚 Giao nhanh 2 giờ</li>
+        <li>🛡️ Bảo hành 12 tháng</li>
+        <li>🔄 Đổi trả 30 ngày</li>
+      </ul>
+
+      <button
+        class="btn btn-danger w-100 py-3 fw-bold"
+        [disabled]="selectedProduct.quantity <= 0"
+        (click)="addToCart(selectedProduct); closeDetail()">
+
+        🛒 THÊM VÀO GIỎ HÀNG
+
+      </button>
+
+    </div>
 
   </div>
 
 </div>
+
+  </div>
+}

@@ -62,4 +62,16 @@ topSelling() {
     `${this.api}/report/top-selling`
   );
 }
+uploadImage(file: File) {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  return this.http.post(
+    `${this.api}/upload`,
+    formData,
+    {
+      responseType: 'text'
+    }
+  );
+}
 }

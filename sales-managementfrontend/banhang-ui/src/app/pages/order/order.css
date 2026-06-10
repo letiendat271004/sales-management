@@ -1,0 +1,95 @@
+/* Custom định dạng header */
+.border-bottom-dash {
+  border-bottom: 1px dashed #e2e8f0;
+}
+.page-title {
+  color: #1e293b;
+  letter-spacing: -0.5px;
+}
+.text-success-dark {
+  color: #16a34a;
+}
+.fw-black {
+  font-weight: 800;
+}
+.rounded-6 {
+  border-radius: 6px !important;
+}
+
+/* Thanh tìm kiếm nhỏ gọn */
+.form-search-custom {
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  padding-left: 0.75rem;
+  font-size: 0.85rem;
+  width: 220px;
+}
+.btn-light-custom {
+  background-color: #ffffff;
+  color: #475569;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.btn-light-custom:hover {
+  background-color: #f8fafc;
+}
+
+/* Giao diện Table Modern sang xịn */
+.table-modern thead th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase; 
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  padding: 1.1rem 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+.table-modern tbody td {
+  padding: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.95rem;
+}
+.table-modern tbody tr:hover td {
+  background-color: #f8fafc;
+}
+
+/* Custom định danh các badge */
+.badge-order-id {
+  background-color: rgba(15, 23, 42, 0.06);
+  color: #0f172a;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.avatar-client-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: 50%;
+  font-size: 0.85rem;
+}
+
+/* Nút In hóa đơn cao cấp */
+.btn-export-invoice {
+  background-color: #ffffff;
+  color: #2563eb;
+  border: 1px solid #cbd5e1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.15s ease;
+}
+.btn-export-invoice:hover {
+  background-color: rgba(37, 99, 235, 0.04);
+  border-color: #2563eb;
+  color: #1d4ed8;
+  transform: translateY(-1px);
+}
